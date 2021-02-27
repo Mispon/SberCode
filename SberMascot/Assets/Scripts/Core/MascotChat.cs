@@ -18,6 +18,8 @@ namespace Core {
         [Space]
         [SerializeField] private SpeechManager speechManager;
 
+        private static readonly int _isOpen = Animator.StringToHash("IsOpen");
+
         private readonly List<string> _history = new List<string>();
 
         private void Start() {
@@ -84,7 +86,7 @@ namespace Core {
             bubbleContent.text = text;
             bool isOpen = text.Length > 0;
             bubble.SetActive(isOpen);
-            bubbleAnimator.SetTrigger(isOpen ? "Open" : "Close");
+            bubbleAnimator.SetBool(_isOpen, isOpen);
         }
 
         private static float CalcDelay(int answerLength) {

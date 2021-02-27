@@ -412,7 +412,7 @@ namespace Managers {
                     i++;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Debug.Log($"Error occurred converting audio data to float array of size {wavAudio.Length} at position {pos}.");
             }

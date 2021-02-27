@@ -218,6 +218,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 110828578}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &110828582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 408803566, guid: c1ee23a5536b7084e8529787ec03b036,
+    type: 3}
+  m_PrefabInstance: {fileID: 110828578}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9565c5d657d0e684a981410d8ee8b798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &110828583 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4509665295214860952, guid: c1ee23a5536b7084e8529787ec03b036,
@@ -962,7 +974,18 @@ MonoBehaviour:
   DuplicateStage: 0
   OnContentPlaced:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 110828582}
+        m_MethodName: OnPlaced
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mDisplayAdvanced: 1
 --- !u!114 &1773117710
 MonoBehaviour:
@@ -1032,13 +1055,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773117708}
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1001 &1933382231
 PrefabInstance:
   m_ObjectHideFlags: 0
