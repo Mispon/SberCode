@@ -25,6 +25,7 @@ namespace UI {
 
                 if (_touch.phase == TouchPhase.Ended) {
                     Vector2 delta = _touch.position - _initialPosition;
+                    if (delta.sqrMagnitude < 200_000) return;
                     TrySwapScene(delta.x > 0 ? SwapDirection.ToRight : SwapDirection.ToLeft);
                 }
             }
