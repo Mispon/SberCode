@@ -12,6 +12,7 @@ namespace Core {
         [SerializeField] private string url;
         [SerializeField] private string token;
         [Space]
+        [SerializeField] private Animator bubbleAnimator;
         [SerializeField] private GameObject bubble;
         [SerializeField] private TextMeshProUGUI bubbleContent;
         [Space]
@@ -81,7 +82,9 @@ namespace Core {
 
         private void TriggerBubble(string text) {
             bubbleContent.text = text;
-            bubble.SetActive(text.Length > 0);
+            bool isOpen = text.Length > 0;
+            bubble.SetActive(isOpen);
+            bubbleAnimator.SetTrigger(isOpen ? "Open" : "Close");
         }
 
         private static float CalcDelay(int answerLength) {
@@ -90,30 +93,32 @@ namespace Core {
         }
     }
 
-    [Serializable]
-    public class Payload {
-        public Data data;
-    }
+    #region REQUEST FORMAT
+        [Serializable]
+        public class Payload {
+            public Data data;
+        }
 
-    [Serializable]
-    public class Data {
-        public string type;
-        public Attributes attributes;
-    }
+        [Serializable]
+        public class Data {
+            public string type;
+            public Attributes attributes;
+        }
 
-    [Serializable]
-    public class Attributes {
-        public Chat chat;
-    }
+        [Serializable]
+        public class Attributes {
+            public Chat chat;
+        }
 
-    [Serializable]
-    public class Chat {
-        public string engine;
-        public string[] history;
-    }
+        [Serializable]
+        public class Chat {
+            public string engine;
+            public string[] history;
+        }
 
-    [Serializable]
-    public class Reply {
-        public string reply;
-    }
+        [Serializable]
+        public class Reply {
+            public string reply;
+        }
+    #endregion
 }

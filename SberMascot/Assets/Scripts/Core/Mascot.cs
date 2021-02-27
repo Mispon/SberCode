@@ -2,10 +2,8 @@
 
 namespace Core {
     public class Mascot : MonoBehaviour {
-        [SerializeField] private Transform arCamera;
-
-        private void OnBecameVisible() {
-            transform.LookAt(arCamera);
+        private void Update() {
+            transform.LookAt(Vector3.zero);
         }
     }
 }
