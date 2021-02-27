@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4508211, g: 0.5007383, b: 0.57469463, a: 1}
+  m_IndirectSpecularColor: {r: 0.45082152, g: 0.50073904, b: 0.57469535, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: https://sbercode.dh.arvr.sberlabs.com/dh/api/v1/chat?=
-  token: Bearer pAGj9e9Qd4d99ggM
+  token: test
   bubbleAnimator: {fileID: 110828583}
   bubble: {fileID: 110828581}
   bubbleContent: {fileID: 110828580}
@@ -1156,6 +1156,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6679736280151694445, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6679736280151694445, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4db2b2a51c5523142af75e7af07545b6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49f803ea4307b5d4f9c89451d6493f01, type: 3}
 --- !u!224 &5715337312010968420 stripped
