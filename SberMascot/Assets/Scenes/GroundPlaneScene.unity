@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: https://sbercode.dh.arvr.sberlabs.com/dh/api/v1/chat?=
-  token: test
+  token: Bearer pAGj9e9Qd4d99ggM
   bubbleAnimator: {fileID: 110828583}
   bubble: {fileID: 110828581}
   bubbleContent: {fileID: 110828580}
@@ -1046,6 +1046,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1490363375}
     m_Modifications:
+    - target: {fileID: 2379950059061514068, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950059061514068, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950059061514068, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950059061514068, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950060154260031, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950060154260031, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950060154260031, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950060154260031, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950060393925559, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950060393925559, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950060393925559, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379950060393925559, guid: 49f803ea4307b5d4f9c89451d6493f01,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6679736280151694440, guid: 49f803ea4307b5d4f9c89451d6493f01,
         type: 3}
       propertyPath: m_Pivot.x
