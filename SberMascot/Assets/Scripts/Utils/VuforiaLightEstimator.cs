@@ -28,7 +28,7 @@ namespace Utils {
 #if UNITY_EDITOR
             mPixelFormat = PIXEL_FORMAT.GRAYSCALE; // Need Grayscale for Editor
 #else
-        mPixelFormat = PIXEL_FORMAT.RGB888; // Use RGB888 for mobile
+            mPixelFormat = PIXEL_FORMAT.RGB888; // Use RGB888 for mobile
 #endif
             // Register Vuforia life-cycle callbacks:
             VuforiaARController.Instance.RegisterVuforiaStartedCallback(OnVuforiaStarted);

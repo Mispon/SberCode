@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Managers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 namespace Core {
     public class MascotChat : MonoBehaviour {
@@ -12,30 +13,28 @@ namespace Core {
         [SerializeField] private string token;
         [Space]
         [SerializeField] private GameObject bubble;
-        [SerializeField] private Text bubbleContent;
+        [SerializeField] private TextMeshProUGUI bubbleContent;
         [Space]
-        [SerializeField] private InputField inputField;
-        [SerializeField] private Button sendButton;
+        [SerializeField] private SpeechManager speechManager;
 
         private readonly List<string> _history = new List<string>();
 
         private void Start() {
             TriggerBubble("");
-            sendButton.onClick.AddListener(OnMessage);
+            speechManager.onReceiveTextFromSpeech += OnMessage;
         }
 
-        private void OnMessage() {
-            string message = inputField.text;
+        private void OnMessage(string message) {
             _history.Add(message);
 
             StartCoroutine(SendRequest(answer => {
                 if (string.IsNullOrWhiteSpace(answer))
                     return;
+
                 _history.Add(answer);
                 StartCoroutine(ShowAnswer(answer));
+                speechManager.SpeechPlayback(answer);
             }));
-
-            inputField.text = string.Empty;
         }
 
         private IEnumerator SendRequest(Action<string> callback) {
@@ -75,13 +74,19 @@ namespace Core {
 
         private IEnumerator ShowAnswer(string answer) {
             TriggerBubble(answer);
-            yield return new WaitForSeconds(3);
+            float delay = CalcDelay(answer.Length);
+            yield return new WaitForSeconds(delay);
             TriggerBubble("");
         }
 
         private void TriggerBubble(string text) {
             bubbleContent.text = text;
             bubble.SetActive(text.Length > 0);
+        }
+
+        private static float CalcDelay(int answerLength) {
+            float delay = answerLength / 4f;
+            return Mathf.Clamp(delay, 3, 15);
         }
     }
 
