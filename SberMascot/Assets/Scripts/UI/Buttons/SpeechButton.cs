@@ -2,10 +2,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI {
+namespace UI.Buttons {
     public class SpeechButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        public SpeechManager sample;
+        private SpeechManager _speechManager;
+
+        private void Start() {
+            _speechManager = FindObjectOfType<SpeechManager>();
+        }
 
         private float Scale {
             set => transform.localScale = value * Vector3.one;
@@ -14,13 +18,13 @@ namespace UI {
         public void OnPointerDown(PointerEventData eventData)
         {
             Scale = 2;
-            sample.StartRecording();
+            _speechManager.StartRecording();
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
             Scale = 1;
-            sample.StopRecording();
+            _speechManager.StopRecording();
         }
     }
 }

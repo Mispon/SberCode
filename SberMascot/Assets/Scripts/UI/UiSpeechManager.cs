@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using Managers;
 using UnityEngine;
-using UnityEngine.Android;
 using UnityEngine.UI;
 using Utils.Enums;
 using Utils.Helpers;
 
 namespace UI {
-    public class UIManager : MonoBehaviour {
+    public class UiSpeechManager : MonoBehaviour {
 
         [Header("Manager")]
         [SerializeField] private SpeechManager speechManager;
@@ -26,7 +25,11 @@ namespace UI {
         [Space]
         [SerializeField] private Dropdown voiceList;
         [Space]
-        [SerializeField] public InputField inputMessage;
+        [SerializeField] private InputField inputMessage;
+
+        [Space]
+        [SerializeField] private Button speechButton;
+        [SerializeField] private Button settingsButton;
         
         [Header("Debug")]
         [SerializeField]
@@ -45,7 +48,10 @@ namespace UI {
             voicePitchSlider.value = (defaultSettings.VoicePitch);
             sourcePitchSlider.value = (defaultSettings.SourcePitch);
 
-            speechManager.onReceivedText += (message) => inputMessage.text = message;
+            speechButton.onClick.AddListener(SpeechPlayback);
+            settingsButton.onClick.AddListener(SetUp);
+            
+            speechManager.onReceiveTextFromSpeech += (message) => inputMessage.text = message;
         }
 
         // The spinning cube is only used to verify that speech synthesis doesn't introduce
@@ -59,19 +65,21 @@ namespace UI {
         /// <summary>
         /// Speech synthesis can be called via REST API or Speech Service SDK plugin for Unity
         /// </summary>
-        public void SpeechPlayback() {
+        private void SpeechPlayback() {
             Debug.Log("GOT!");
             if (speechManager.IsReady) {
-                string msg = inputMessage.text;
-                speechManager.AudioDataSettings.Initialize(rateSlider.value,
-                                                           Mathf.FloorToInt(voicePitchSlider.value),
-                                                           sourcePitchSlider.value,
-                                                           (VoiceName) voiceList.value);
-                
-                speechManager.SpeechPlayback(msg, useSDK.isOn);
+                speechManager.SpeechPlayback(inputMessage.text);
             } else {
                 Debug.LogError("SpeechManager is not ready. Wait until authentication has completed.");
             }
+        }
+
+        private void SetUp() {
+            speechManager.AudioDataSettings.Initialize(useSDK.isOn,
+                                                       rateSlider.value,
+                                                       Mathf.FloorToInt(voicePitchSlider.value),
+                                                       sourcePitchSlider.value,
+                                                       (VoiceName) voiceList.value);
         }
     }
 }

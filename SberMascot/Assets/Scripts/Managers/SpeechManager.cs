@@ -9,7 +9,8 @@ namespace Managers {
     public class SpeechManager : MonoBehaviour {
         private const string DEFAULT_LANGUAGE_CODE = "ru-RU";
 
-        public event Action<string> onReceivedText;
+        //ToDo: subscribe to send to bot
+        public event Action<string> onReceiveTextFromSpeech;
     
         [Header("Manager")]
         [SerializeField] private TextToSpeech textToSpeechManager;
@@ -42,16 +43,12 @@ namespace Managers {
         }
 
         private void OnResultSpeech(string message) {
-            onReceivedText?.Invoke(message);
+            onReceiveTextFromSpeech?.Invoke(message);
         }
 
         private void Initialize() {
-            var androidDebug = FindObjectOfType<AndroidDebug>();
-            if (Permission.HasUserAuthorizedPermission(Permission.Microphone)) {
-                androidDebug.AddLog("Права на микровон даны!");
-            } else {
+            if (!Permission.HasUserAuthorizedPermission(Permission.Microphone)) {
                 Permission.RequestUserPermission(Permission.Microphone);
-                androidDebug.AddLog($"Права на микровон: {Permission.HasUserAuthorizedPermission(Permission.Microphone)}");
             }
             
             speechToTextManager = SpeechToText.Instance;
@@ -61,13 +58,13 @@ namespace Managers {
             textToSpeechManager.Initialize(AudioDataSettings);
         }
 
+        //ToDo: use to speech text
         /// <summary>
         /// Speech synthesis can be called via REST API or Speech Service SDK plugin for Unity
         /// </summary>
-        public async void SpeechPlayback(string msg, bool useSdk = true) {
-            Debug.Log("GOT!");
+        public async void SpeechPlayback(string msg) {
             if (textToSpeechManager.IsReady) {
-                if (useSdk) {
+                if (AudioDataSettings.UseSdk) {
                     try {
                         await Task.Run(() => textToSpeechManager.SpeakWithSDKPlugin(msg));
                         Debug.LogError("Run async");
@@ -78,7 +75,7 @@ namespace Managers {
                     textToSpeechManager.SpeakWithRESTAPI(msg);
                 }
             } else {
-                Debug.Log("SpeechManager is not ready. Wait until authentication has completed.");
+                Debug.LogError("SpeechManager is not ready. Wait until authentication has completed.");
             }
         }
     }

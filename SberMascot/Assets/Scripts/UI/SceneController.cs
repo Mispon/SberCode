@@ -8,6 +8,7 @@ namespace UI {
     }
 
     public class SceneController : MonoBehaviour {
+        [SerializeField] private float sqrDelta = 300;
         [SerializeField] private string groundPlaneName;
         [SerializeField] private string imageTargetName;
 
@@ -25,6 +26,9 @@ namespace UI {
 
                 if (_touch.phase == TouchPhase.Ended) {
                     Vector2 delta = _touch.position - _initialPosition;
+                    if (Mathf.Abs(delta.sqrMagnitude) < sqrDelta) {
+                        return;
+                    }
                     TrySwapScene(delta.x > 0 ? SwapDirection.ToRight : SwapDirection.ToLeft);
                 }
             }
