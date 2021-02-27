@@ -207,5 +207,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 1129453855783558256}
-  speedEffect: 1
-  scaleEffect: 1.2
+  speedEffect: 0.9
+  scaleEffect: 1.3
