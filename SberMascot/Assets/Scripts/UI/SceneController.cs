@@ -1,47 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UI {
-    public enum SwapDirection {
-        ToRight,
-        ToLeft
-    }
-
     public class SceneController : MonoBehaviour {
-        [SerializeField] private float sqrDelta = 300;
-        [SerializeField] private string groundPlaneName;
-        [SerializeField] private string imageTargetName;
 
-        private Touch _touch;
-        private Vector2 _initialPosition;
+        [SerializeField] private Button nextSceneButton;
+        [Space]
+        [SerializeField] private string[] sceneNames;
 
-        private void Update() {
-            if (Input.touchCount == 1) {
-                _touch = Input.GetTouch(0);
+        private void Start() {
+            nextSceneButton.onClick.AddListener(() => {
+                nextSceneButton.interactable = false;
+                Scene scene = SceneManager.GetActiveScene();
+                var index = Array.IndexOf(sceneNames, scene.name);
+                index = index == -1
+                    ? 0
+                    : (index + 1) % sceneNames.Length;
 
-                if (_touch.phase == TouchPhase.Began) {
-                    _initialPosition = _touch.position;
-                    return;
-                }
-
-                if (_touch.phase == TouchPhase.Ended) {
-                    Vector2 delta = _touch.position - _initialPosition;
-                    if (delta.sqrMagnitude < sqrDelta) return;
-                    TrySwapScene(delta.x > 0 ? SwapDirection.ToRight : SwapDirection.ToLeft);
-                }
-            }
-        }
-
-        private void TrySwapScene(SwapDirection direction) {
-            Scene scene =  SceneManager.GetActiveScene();
-
-            if (direction == SwapDirection.ToLeft && scene.name == groundPlaneName) {
-                SceneManager.LoadScene(imageTargetName);
-            }
-
-            if (direction == SwapDirection.ToRight && scene.name == imageTargetName) {
-                SceneManager.LoadScene(groundPlaneName);
-            }
+                SceneManager.LoadScene(sceneNames[index]);
+            });
         }
     }
 }
