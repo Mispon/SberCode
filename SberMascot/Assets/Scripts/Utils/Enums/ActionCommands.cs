@@ -7,6 +7,8 @@ namespace Utils.Enums {
         [SpeechCommand("виляй")]
         Wiggle,
         [SpeechCommand("язык")]
-        Tongue
+        Tongue,
+        [SpeechCommand("лежать")]
+        Liedown
     }
 }

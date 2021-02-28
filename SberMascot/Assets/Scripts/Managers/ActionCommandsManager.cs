@@ -10,7 +10,6 @@ using Random = UnityEngine.Random;
 
 namespace Managers {
     public class ActionCommandsManager: Singleton<ActionCommandsManager> {
-        //ToDo: подпиши пса на прием анимации триггера
         public event Action<string> onNewAnimation;
         
         [SerializeField] private ActionCommandAnimation[] actionCommandAnimations;

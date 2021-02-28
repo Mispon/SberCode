@@ -6,7 +6,6 @@ using UnityEngine;
 namespace Core {
     [RequireComponent(typeof(MascotChat))]
     public class Mascot : MonoBehaviour {
-
         [SerializeField]
         private SpeechManager speechManager;
         
@@ -24,8 +23,7 @@ namespace Core {
         private void OnSpeechCommand(string message) {
             bool recognizeCommand = _speechCommandRecognizer.TryGetCommand(message, out var actionCommand);
             if (recognizeCommand) {
-                ActionCommandsManager.Instance.CurrentCommand = actionCommand ?? throw new Exception("Хуйня, так не должно работать");
-                _chat.OnTestAction(actionCommand.ToString() ?? "Хуйня, так не должно работать");
+                ActionCommandsManager.Instance.CurrentCommand = actionCommand ?? throw new ArgumentException("Not found");
             } else {
                 _chat.OnMessage(message);   
             }

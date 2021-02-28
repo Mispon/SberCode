@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Managers;
 using Managers.Speech;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
-using Utils.Enums;
 
 namespace Core {
     public class MascotChat : MonoBehaviour {
@@ -17,9 +17,11 @@ namespace Core {
         [SerializeField] private GameObject bubble;
         [SerializeField] private TextMeshProUGUI bubbleContent;
         [Space]
+        [SerializeField] private Animator movementsAnimator;
         [SerializeField] private SpeechManager speechManager;
 
         private static readonly int _isOpen = Animator.StringToHash("IsOpen");
+        private static readonly int _isSpeech = Animator.StringToHash("IsSpeech");
 
         private readonly List<string> _history = new List<string>();
 
@@ -27,7 +29,14 @@ namespace Core {
             if (speechManager == null) {
                 speechManager = SpeechManager.Instance;
             }
+
+            ActionCommandsManager.Instance.onNewAnimation += TriggerAnimation;
+
             TriggerBubble("");
+        }
+
+        private void TriggerAnimation(string triggerName) {
+            movementsAnimator.SetTrigger(triggerName);
         }
 
         public void OnMessage(string message) {
@@ -41,11 +50,6 @@ namespace Core {
                 StartCoroutine(ShowAnswer(answer));
                 speechManager.SpeechPlayback(answer);
             }));
-        }
-
-        //ToDo: remove
-        public void OnTestAction(string command) {
-            StartCoroutine(ShowAnswer(command));
         }
 
         private IEnumerator SendRequest(Action<string> callback) {
@@ -95,6 +99,7 @@ namespace Core {
             bool isOpen = text.Length > 0;
             bubble.SetActive(isOpen);
             bubbleAnimator.SetBool(_isOpen, isOpen);
+            movementsAnimator.SetBool(_isSpeech, isOpen);
         }
 
         private static float CalcDelay(int answerLength) {
