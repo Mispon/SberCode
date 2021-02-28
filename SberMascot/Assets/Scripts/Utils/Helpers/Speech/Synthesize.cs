@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using UnityEngine;
 using Utils.Enums;
 
-namespace Utils.Helpers {
+namespace Utils.Helpers.Speech {
     /// <summary>
     /// Sample synthesize request
     /// </summary>

@@ -14,7 +14,7 @@ namespace UI.Buttons {
 
         public bool IsShown {
             get => _isShown;
-            private set {
+            protected set {
                 _isShown = value;
                 onStateChanged?.Invoke(_isShown);
             }

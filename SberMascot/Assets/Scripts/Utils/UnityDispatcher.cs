@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utils.Helpers {
+namespace Utils {
 #if WINDOWS_UWP
 /// <summary>
 /// A helper class for dispatching actions to run on various Unity threads.

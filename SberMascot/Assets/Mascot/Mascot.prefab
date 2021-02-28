@@ -4816,6 +4816,7 @@ GameObject:
   - component: {fileID: 7570338434433230307}
   - component: {fileID: 110828585}
   - component: {fileID: 408803566}
+  - component: {fileID: 5432586090317078623}
   m_Layer: 0
   m_Name: Mascot
   m_TagString: Untagged
@@ -4872,6 +4873,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9565c5d657d0e684a981410d8ee8b798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speechManager: {fileID: 0}
+--- !u!114 &5432586090317078623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081046330093698905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f8c5a26317885409511d6cda330a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://sbercode.dh.arvr.sberlabs.com/dh/api/v1/chat?=
+  token: Bearer pAGj9e9Qd4d99ggM
+  bubbleAnimator: {fileID: 4509665295214860952}
+  bubble: {fileID: 538524935}
+  bubbleContent: {fileID: 4301468188798753807}
+  speechManager: {fileID: 0}
 --- !u!1 &7119993832718852838
 GameObject:
   m_ObjectHideFlags: 0

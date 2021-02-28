@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 2379950060154260029}
   - component: {fileID: 2379950060154260028}
   m_Layer: 5
-  m_Name: WalkButton
+  m_Name: StayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -572,7 +572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6679736280151694440
 RectTransform:
   m_ObjectHideFlags: 0

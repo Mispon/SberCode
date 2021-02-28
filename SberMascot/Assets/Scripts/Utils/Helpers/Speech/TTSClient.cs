@@ -42,7 +42,7 @@ using UnityEngine;
 // Note that Unity 2017.x doesn't recognize the namespace System.Net.Http by default.
 // This is why we added mcs.rsp with "-r:System.Net.Http.dll" in it in the Assets folder.
 
-namespace Utils.Helpers
+namespace Utils.Helpers.Speech
 {
     /// <summary>
     /// This class demonstrates how to get a valid O-auth token

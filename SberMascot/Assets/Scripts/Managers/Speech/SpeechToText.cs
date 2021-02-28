@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Managers {
+namespace Managers.Speech {
     public class SpeechToText : MonoBehaviour {
 #region Init
 
