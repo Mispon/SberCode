@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Managers;
+using Managers.Speech;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Enums;
 using Utils.Helpers;
+using Utils.Helpers.Speech;
 
 namespace UI {
     public class UiSpeechManager : MonoBehaviour {
@@ -36,6 +38,10 @@ namespace UI {
         private Transform shape;
 
         private void Start() {
+            if (speechManager == null) {
+                speechManager = SpeechManager.Instance;
+            }
+            
             List<string> voices = new List<string>(Enum.GetNames(typeof(VoiceName)));
             voiceList.AddOptions(voices);
             rateSlider.onValueChanged.AddListener((value) => rateText.text = $"{value: 0.00}");

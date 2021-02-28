@@ -1,7 +1,7 @@
 ﻿using System;
 using Utils.Enums;
 
-namespace Utils.Helpers {
+namespace Utils.Helpers.Speech {
     public class AudioDataSettings {
         public event Action<AudioDataSettings> onInitialized;
 

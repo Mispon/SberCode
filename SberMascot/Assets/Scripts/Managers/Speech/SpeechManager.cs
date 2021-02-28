@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using UI.DebugUi;
 using UnityEngine;
 using UnityEngine.Android;
-using Utils.Helpers;
+using Utils;
+using Utils.Helpers.Speech;
 
-namespace Managers {
-    public class SpeechManager : MonoBehaviour {
+namespace Managers.Speech {
+    public class SpeechManager : Singleton<SpeechManager> {
         private const string DEFAULT_LANGUAGE_CODE = "ru-RU";
 
-        //ToDo: subscribe to send to bot
         public event Action<string> onReceiveTextFromSpeech;
     
         [Header("Manager")]
@@ -58,7 +57,6 @@ namespace Managers {
             textToSpeechManager.Initialize(AudioDataSettings);
         }
 
-        //ToDo: use to speech text
         /// <summary>
         /// Speech synthesis can be called via REST API or Speech Service SDK plugin for Unity
         /// </summary>

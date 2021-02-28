@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using Attributes;
 using Microsoft.CognitiveServices.Speech;
 using UnityEngine;
+using Utils;
 using Utils.Enums;
 using Utils.Helpers;
+using Utils.Helpers.Speech;
 
 #if UNITY_EDITOR || !UNITY_WSA
 #endif
 
-namespace Managers {
+namespace Managers.Speech {
     /// <summary>
     /// SpeechManager provides two paths for Speech Synthesis using the 
     /// Cognitive Services Unified Speech service:

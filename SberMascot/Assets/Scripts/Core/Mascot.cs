@@ -1,7 +1,36 @@
-﻿using UnityEngine;
+﻿using System;
+using Managers;
+using Managers.Speech;
+using UnityEngine;
 
 namespace Core {
+    [RequireComponent(typeof(MascotChat))]
     public class Mascot : MonoBehaviour {
+
+        [SerializeField]
+        private SpeechManager speechManager;
+        
+        private MascotChat _chat;
+        private readonly SpeechCommandRecognizer _speechCommandRecognizer = new SpeechCommandRecognizer(); 
+
+        private void Start() {
+            _chat = GetComponent<MascotChat>();
+            if (speechManager == null) {
+                speechManager = SpeechManager.Instance;
+            }
+            speechManager.onReceiveTextFromSpeech += OnSpeechCommand;
+        }
+
+        private void OnSpeechCommand(string message) {
+            bool recognizeCommand = _speechCommandRecognizer.TryGetCommand(message, out var actionCommand);
+            if (recognizeCommand) {
+                ActionCommandsManager.Instance.CurrentCommand = actionCommand ?? throw new Exception("Хуйня, так не должно работать");
+                _chat.OnTestAction(actionCommand.ToString() ?? "Хуйня, так не должно работать");
+            } else {
+                _chat.OnMessage(message);   
+            }
+        }
+
         /// <summary>
         /// Place actor callback
         /// </summary>

@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Managers;
+using Managers.Speech;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using Utils.Enums;
 
 namespace Core {
     public class MascotChat : MonoBehaviour {
@@ -23,11 +24,13 @@ namespace Core {
         private readonly List<string> _history = new List<string>();
 
         private void Start() {
+            if (speechManager == null) {
+                speechManager = SpeechManager.Instance;
+            }
             TriggerBubble("");
-            speechManager.onReceiveTextFromSpeech += OnMessage;
         }
 
-        private void OnMessage(string message) {
+        public void OnMessage(string message) {
             _history.Add(message);
 
             StartCoroutine(SendRequest(answer => {
@@ -38,6 +41,11 @@ namespace Core {
                 StartCoroutine(ShowAnswer(answer));
                 speechManager.SpeechPlayback(answer);
             }));
+        }
+
+        //ToDo: remove
+        public void OnTestAction(string command) {
+            StartCoroutine(ShowAnswer(command));
         }
 
         private IEnumerator SendRequest(Action<string> callback) {
